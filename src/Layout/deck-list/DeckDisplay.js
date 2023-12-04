@@ -19,14 +19,14 @@ function DeckDisplay({ deck, decks, setDecks }) {
   }
 
   return (
-    <div className="card my-4">
+    <div className="card my-4" style={{ width: "90%" }}>
       <div className="card-header text-body-secondary">
         {deck.cards.length} cards
       </div>
       <div className="card-body">
         <h5 className="card-title">{deck.name}</h5>
         <p className="card-text">{deck.description}</p>
-        <div className="row justify-content-start">
+        <div className="row">
           <div className="col">
             <button
               type="button"
@@ -41,7 +41,7 @@ function DeckDisplay({ deck, decks, setDecks }) {
             </button>
             <button
               type="button"
-              className="btn btn-primary text-nowrap"
+              className="btn btn-primary"
               onClick={() => history.push(`/decks/${id}/study`)}
             >
               <i
@@ -51,7 +51,7 @@ function DeckDisplay({ deck, decks, setDecks }) {
               Study
             </button>
           </div>
-          <div className="col-2 align-self-end">
+          <div className="col-2">
             <button
               type="button"
               className="btn btn-danger"

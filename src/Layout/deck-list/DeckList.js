@@ -36,20 +36,22 @@ function DeckList() {
 
   if (decks.length) {
     return (
-      <div className="row">
-        <button
-          type="button"
-          className="btn btn-secondary"
-          onClick={() => history.push("/decks/new")}
-        >
-          <i
-            className="bi bi-plus-square-dotted"
-            style={{ marginRight: "10px", fontSize: "1.2rem" }}
-          ></i>
-          Create Deck
-        </button>
-        {deckList}
-      </div>
+      <>
+        <div className="row">
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() => history.push("/decks/new")}
+          >
+            <i
+              className="bi bi-plus-square-dotted"
+              style={{ marginRight: "10px", fontSize: "1.2rem" }}
+            ></i>
+            Create Deck
+          </button>
+        </div>
+        <div className="row">{deckList}</div>
+      </>
     );
   }
 

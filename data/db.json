@@ -13,18 +13,6 @@
   ],
   "cards": [
     {
-      "id": 1,
-      "front": "Differentiate between Real DOM and Virtual DOM.",
-      "back": "Virtual DOM updates are faster but do not directly update the HTML",
-      "deckId": 1
-    },
-    {
-      "id": 2,
-      "front": "How do you modify the state of a different React component?",
-      "back": "Not at all! State is visible to the component only.",
-      "deckId": 1
-    },
-    {
       "id": 3,
       "front": "How do you pass data 'down' to a React child component?",
       "back": "As properties or props",

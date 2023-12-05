@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-function StudyCards({ cards }) {
+function StudyCards({ deck, cards }) {
   const [side, setSide] = useState("front");
   const [cardIndex, setCardIndex] = useState(0);
   const history = useHistory();
@@ -44,6 +44,31 @@ function StudyCards({ cards }) {
       >
         Next
       </button>
+    );
+  }
+
+  if (cards.length < 3) {
+    return (
+      <div className="card " style={{ width: "90%" }}>
+        <div className="card-body">
+          <h5 className="card-title">Not enough cards.</h5>
+          <p className="card-text">
+            You need at least 3 cards to study. There are {cards.length} cards
+            in this deck.
+          </p>
+          <button
+            type="button"
+            className="btn btn-primary "
+            onClick={() => history.push(`/decks/${deck.id}/cards/new`)}
+          >
+            <i
+              className="bi bi bi-file-plus"
+              style={{ marginRight: "10px", fontSize: "1.1rem" }}
+            ></i>
+            Add Cards
+          </button>
+        </div>
+      </div>
     );
   }
 

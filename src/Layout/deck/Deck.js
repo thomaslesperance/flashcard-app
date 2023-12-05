@@ -165,7 +165,7 @@ function Deck() {
             </div>
             <div className="row mb-2">
               <h2>Study: {deck.name}</h2>
-              <StudyCards cards={deck.cards} />
+              <StudyCards deck={deck} cards={deck.cards} />
             </div>
           </Route>
         </Switch>

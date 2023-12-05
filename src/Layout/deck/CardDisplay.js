@@ -8,7 +8,7 @@ function CardDisplay({ card, deck, setDeck }) {
 
   async function handleDeleteCard() {
     const response = window.confirm(
-      "Delete this deck?\n\nYou will not be able to recover it."
+      "Delete this card?\n\nYou will not be able to recover it."
     );
 
     if (response) {

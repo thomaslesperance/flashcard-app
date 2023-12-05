@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory, useRouteMatch } from "react-router-dom";
-import { readDeck, deleteDeck, deleteCard } from "../../utils/api";
+import { readDeck, deleteDeck } from "../../utils/api";
+import CardDisplay from "./CardDisplay";
 
 function Deck() {
   const [deck, setDeck] = useState({});
   const { deckId } = useParams();
   const history = useHistory();
   const { path } = useRouteMatch();
-  let cardList;
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -26,7 +26,6 @@ function Deck() {
     }
 
     loadDeck();
-    cardList = cardListMaker();
 
     return () => abortController.abort();
   }, [deckId]);
@@ -36,59 +35,14 @@ function Deck() {
       "Delete this deck?\n\nYou will not be able to recover it."
     );
     if (response) {
-      const response = await deleteDeck(deck.id);
-      if (!Object.keys(response).length) {
+      const deleteResponse = await deleteDeck(deck.id);
+      if (!Object.keys(deleteResponse).length) {
         history.push("/");
       }
     }
   }
 
-  async function handleDeleteCard(cardId) {
-    const response = await deleteCard(cardId);
-    if (!Object.keys(response).length) {
-      const newCards = deck.cards.filter((card) => card.id !== cardId);
-      const newDeck = deck;
-      newDeck.cards = newCards;
-      setDeck(newDeck);
-    }
-  }
-
-  function cardListMaker() {
-    return deck.cards.map((card) => {
-      return (
-        <li class="list-group-item">
-          <div className="row">
-            <div className="col">{card.front}</div>
-            <div className="col">
-              <p>{card.back}</p>
-            </div>
-          </div>
-          <div className="row justify-content-end mr-3">
-            <button
-              type="button"
-              className="btn btn-secondary mr-4"
-              onClick={() => history.push(`${path}/cards/${card.id}/edit`)}
-            >
-              <i
-                className="bi bi-pencil"
-                style={{ marginRight: "10px", fontSize: "1.1rem" }}
-              ></i>
-              Edit
-            </button>
-            <button
-              type="button"
-              className="btn btn-danger"
-              onClick={handleDeleteCard(card.id)}
-            >
-              <i className="bi bi-trash3" style={{ fontSize: "1.2rem" }}></i>
-            </button>
-          </div>
-        </li>
-      );
-    });
-  }
-
-  if (deck.id && cardList.length) {
+  if (deck.id) {
     return (
       <>
         <div className="row mb-4">
@@ -157,7 +111,11 @@ function Deck() {
             <div className="card-header border-0">
               <h5>Cards</h5>
             </div>
-            <ul class="list-group list-group-flush">{cardList}</ul>
+            <ul class="list-group list-group-flush">
+              {deck.cards.map((card) => (
+                <CardDisplay card={card} deck={deck} setDeck={setDeck} />
+              ))}
+            </ul>
           </div>
         </div>
       </>

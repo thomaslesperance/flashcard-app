@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import {
   Switch,
   Route,
+  Link,
   useParams,
   useHistory,
   useRouteMatch,
@@ -65,8 +66,16 @@ function Deck() {
     return (
       <>
         <Switch>
-          //Deck display
           <Route exact path={path}>
+            <div className="row mb-4">
+              <ol class="breadcrumb border" style={{ width: "90%" }}>
+                <li class="breadcrumb-item">
+                  <Link to="/">Home</Link>
+                </li>
+                <li class="breadcrumb-item active">{deck.name}</li>
+              </ol>
+            </div>
+
             <div className="row mb-4">
               <div className="card " style={{ width: "90%" }}>
                 <div className="card-body">
@@ -141,7 +150,19 @@ function Deck() {
               </div>
             </div>
           </Route>
+
           <Route path={`${path}/study`}>
+            <div className="row mb-4">
+              <ol class="breadcrumb border" style={{ width: "90%" }}>
+                <li class="breadcrumb-item">
+                  <Link to="/">Home</Link>
+                </li>
+                <li class="breadcrumb-item">
+                  <Link to={`/decks/${deck.id}`}>{deck.name}</Link>
+                </li>
+                <li class="breadcrumb-item active">Study</li>
+              </ol>
+            </div>
             <div className="row mb-2">
               <h2>Study: {deck.name}</h2>
               <StudyCards cards={deck.cards} />

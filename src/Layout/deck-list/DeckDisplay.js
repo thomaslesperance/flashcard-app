@@ -19,7 +19,7 @@ function DeckDisplay({ deck, decks, setDecks }) {
   }
 
   return (
-    <div className="card my-4" style={{ width: "90%" }}>
+    <div className="card my-2" style={{ width: "90%" }}>
       <div className="card-header text-body-secondary">
         {deck.cards.length} cards
       </div>

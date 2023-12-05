@@ -7,16 +7,22 @@ function CardDisplay({ card, deck, setDeck }) {
   const { path } = useRouteMatch();
 
   async function handleDeleteCard() {
-    const response = await deleteCard(card.id);
-    if (!Object.keys(response).length) {
-      const cards = deck.cards.filter((cd) => cd.id !== card.id);
-      const newDeck = { ...deck, cards };
-      setDeck(newDeck);
+    const response = window.confirm(
+      "Delete this deck?\n\nYou will not be able to recover it."
+    );
+
+    if (response) {
+      const responseFromAPI = await deleteCard(card.id);
+      if (!Object.keys(responseFromAPI).length) {
+        const cards = deck.cards.filter((cd) => cd.id !== card.id);
+        const newDeck = { ...deck, cards };
+        setDeck(newDeck);
+      }
     }
   }
 
   return (
-    <li class="list-group-item">
+    <li className="list-group-item">
       <div className="row">
         <div className="col">{card.front}</div>
         <div className="col">

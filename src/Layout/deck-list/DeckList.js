@@ -37,7 +37,7 @@ function DeckList() {
   if (decks.length) {
     return (
       <>
-        <div className="row">
+        <div className="row mb-2">
           <button
             type="button"
             className="btn btn-secondary"

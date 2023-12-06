@@ -10,6 +10,7 @@ import {
 import { readDeck, deleteDeck } from "../../utils/api";
 import CardDisplay from "./CardDisplay";
 import StudyCards from "./StudyCards";
+import EditDeck from "./EditDeck";
 
 //
 
@@ -166,6 +167,28 @@ function Deck() {
             <div className="row mb-2">
               <h2>Study: {deck.name}</h2>
               <StudyCards deck={deck} cards={deck.cards} />
+            </div>
+          </Route>
+
+          <Route path={`${path}/edit`}>
+            <div className="row mb-4">
+              <ol class="breadcrumb border" style={{ width: "90%" }}>
+                <li class="breadcrumb-item">
+                  <Link to="/">Home</Link>
+                </li>
+                <li class="breadcrumb-item">
+                  <Link to={`/decks/${deck.id}`}>{deck.name}</Link>
+                </li>
+                <li class="breadcrumb-item active">Edit Deck</li>
+              </ol>
+            </div>
+            <div className="row mb-2">
+              <div className="card" style={{ width: "90%" }}>
+                <div className="card-body">
+                  <h2 className="card-title">Edit Deck</h2>
+                  <EditDeck deck={deck} />
+                </div>
+              </div>
             </div>
           </Route>
         </Switch>

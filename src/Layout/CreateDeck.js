@@ -1,7 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { createDeck } from "../utils/api/index";
 
 function CreateDeck() {
-  const submitHandler = () => {};
+  const initialFormData = {
+    name: "",
+    description: "",
+  };
+
+  const [formData, setFormData] = useState({ ...initialFormData });
+  const history = useHistory();
+
+  function handleChange({ target }) {
+    setFormData({
+      ...formData,
+      [target.name]: target.value,
+    });
+  }
+
+  async function submitHandler(event) {
+    event.preventDefault();
+    const response = await createDeck(formData);
+    if (Object.keys(response).length) {
+      setFormData(initialFormData);
+      const deckId = response.id;
+      history.push(`/decks/${deckId}`);
+    }
+  }
 
   return (
     <>
@@ -19,26 +44,38 @@ function CreateDeck() {
           <div className="card-body">
             <h2 className="card-title">Create Deck</h2>
             <form onSubmit={submitHandler}>
-              <label for="deckName" class="form-label">
+              <label for="deckName" className="form-label">
                 Name
               </label>
-              <input type="text" class="form-control" id="deckName"></input>
-              <label for="deckDescription" class="form-label">
+              <input
+                type="text"
+                className="form-control mb-2"
+                id="deckName"
+                name="name"
+                placeholder="Name of deck"
+                onChange={handleChange}
+                value={formData.name}
+              ></input>
+              <label for="deckDescription" className="form-label">
                 Description
               </label>
-              <input
+              <textarea
                 type="textarea"
-                class="form-control"
+                className="form-control mb-4"
                 id="deckDescription"
-              ></input>
+                name="description"
+                placeholder="Description of deck contents"
+                onChange={handleChange}
+                value={formData.description}
+              ></textarea>
               <button
                 type="button"
-                class="btn btn-secondary"
-                onClick={() => {}}
+                className="btn btn-secondary mr-3"
+                onClick={() => history.push("/")}
               >
                 Cancel
               </button>
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" className="btn btn-primary">
                 Submit
               </button>
             </form>

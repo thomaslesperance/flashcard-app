@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, useRouteMatch, useParams } from "react-router-dom";
-import { readDeck } from "../../utils/api/index";
+import { readDeck, readCard } from "../../utils/api/index";
 import EditCard from "./EditCard";
 import AddCard from "./AddCard";
 

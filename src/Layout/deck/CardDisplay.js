@@ -4,7 +4,7 @@ import { deleteCard } from "../../utils/api";
 
 function CardDisplay({ card, deck, setDeck }) {
   const history = useHistory();
-  const { path } = useRouteMatch();
+  const { url } = useRouteMatch();
 
   async function handleDeleteCard() {
     const response = window.confirm(
@@ -33,7 +33,7 @@ function CardDisplay({ card, deck, setDeck }) {
         <button
           type="button"
           className="btn btn-secondary mr-4"
-          onClick={() => history.push(`${path}/cards/${card.id}/edit`)}
+          onClick={() => history.push(`${url}/cards/${card.id}/edit`)}
         >
           <i
             className="bi bi-pencil"

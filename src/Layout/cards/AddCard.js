@@ -26,14 +26,14 @@ function AddCard({ deck }) {
   return (
     <>
       <div className="row mb-4">
-        <ol class="breadcrumb border" style={{ width: "90%" }}>
-          <li class="breadcrumb-item">
+        <ol className="breadcrumb border" style={{ width: "90%" }}>
+          <li className="breadcrumb-item">
             <Link to="/">Home</Link>
           </li>
-          <li class="breadcrumb-item">
+          <li className="breadcrumb-item">
             <Link to={`/decks/${deck.id}`}>{deck.name}</Link>
           </li>
-          <li class="breadcrumb-item active">Add Card</li>
+          <li className="breadcrumb-item active">Add Card</li>
         </ol>
       </div>
 
@@ -43,17 +43,17 @@ function AddCard({ deck }) {
             <h2 className="card-title">{deck.name}: Add Card</h2>
             <form onSubmit={handleSubmit}>
               <label for="front" className="form-label">
-                Name
+                Front
               </label>
-              <input
-                type="text"
+              <textarea
+                type="textarea"
                 className="form-control mb-2"
                 id="front"
                 name="front"
                 placeholder="Front side of card"
                 onChange={handleChange}
                 value={formData.front}
-              ></input>
+              ></textarea>
               <label for="back" className="form-label">
                 Back
               </label>

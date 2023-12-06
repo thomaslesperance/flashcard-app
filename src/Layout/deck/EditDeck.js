@@ -4,8 +4,8 @@ import { updateDeck } from "../../utils/api/index";
 
 function EditDeck({ deck }) {
   const history = useHistory();
-  const initialFormData = { name: "", description: "" };
-  const [formData, setFormData] = useState(initialFormData);
+  const initialFormData = { name: deck.name, description: deck.description };
+  const [formData, setFormData] = useState({ ...initialFormData });
 
   function handleChange({ target }) {
     setFormData({
@@ -34,7 +34,6 @@ function EditDeck({ deck }) {
           id="name"
           name="name"
           className="form-control"
-          placeholder={deck.name}
           onChange={handleChange}
           value={formData.name}
         ></input>
@@ -48,7 +47,6 @@ function EditDeck({ deck }) {
           name="description"
           className="form-control"
           onChange={handleChange}
-          placeholder={deck.description}
           value={formData.description}
         ></textarea>
       </div>

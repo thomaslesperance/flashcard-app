@@ -1,13 +1,15 @@
 /// API Summary ///
 //  listDecks(signal)
-//  createDeck(deck, signal)
-//  readDeck(deckId, signal)
-//  updateDeck(updatedDeck, signal)
-//  deleteDeck(deckId, signal)
-//  createCard(deckId, card, signal)
-//  readCard(cardId, signal)
-//  updateCard(updatedCard, signal)
-//  deleteCard(cardId, signal)
+//
+//  C reateDeck(deck, signal)
+//  R eadDeck(deckId, signal)
+//  U pdateDeck(updatedDeck, signal)
+//  D eleteDeck(deckId, signal)
+//
+//  C reateCard(deckId, card, signal)
+//  R eadCard(cardId, signal)
+//  U pdateCard(updatedCard, signal)
+//  D eleteCard(cardId, signal)
 
 /**
  * Defines the base URL for the API.

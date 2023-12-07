@@ -165,7 +165,12 @@ function Deck() {
               </ol>
             </div>
             <div className="row mb-2">
-              <h2>Study: {deck.name}</h2>
+              <h2>
+                {deck.cards.length < 3
+                  ? `${deck.name}: Not enough cards to study!`
+                  : `${deck.name}:Study`}
+              </h2>
+
               <StudyCards deck={deck} cards={deck.cards} />
             </div>
           </Route>

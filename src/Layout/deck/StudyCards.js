@@ -23,6 +23,30 @@ function StudyCards({ deck, cards }) {
     }
   }
 
+  if (cards.length < 3 || !cards.length) {
+    return (
+      <div className="card " style={{ width: "90%" }}>
+        <div className="card-body">
+          <p className="card-text">
+            You need at least 3 cards to study. There are {cards.length} cards
+            in this deck.
+          </p>
+          <button
+            type="button"
+            className="btn btn-primary "
+            onClick={() => history.push(`/decks/${deck.id}/cards/new`)}
+          >
+            <i
+              className="bi bi bi-file-plus"
+              style={{ marginRight: "10px", fontSize: "1.1rem" }}
+            ></i>
+            Add Cards
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   let cardText = cards[cardIndex].front;
   let cardButtons = [
     <button
@@ -44,31 +68,6 @@ function StudyCards({ deck, cards }) {
       >
         Next
       </button>
-    );
-  }
-
-  if (cards.length < 3) {
-    return (
-      <div className="card " style={{ width: "90%" }}>
-        <div className="card-body">
-          <h5 className="card-title">Not enough cards.</h5>
-          <p className="card-text">
-            You need at least 3 cards to study. There are {cards.length} cards
-            in this deck.
-          </p>
-          <button
-            type="button"
-            className="btn btn-primary "
-            onClick={() => history.push(`/decks/${deck.id}/cards/new`)}
-          >
-            <i
-              className="bi bi bi-file-plus"
-              style={{ marginRight: "10px", fontSize: "1.1rem" }}
-            ></i>
-            Add Cards
-          </button>
-        </div>
-      </div>
     );
   }
 

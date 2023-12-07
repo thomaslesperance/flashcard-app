@@ -3,11 +3,11 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import { readCard, updateCard } from "../../utils/api";
 
 function EditCard({ deck }) {
+  const history = useHistory();
+  const { cardId } = useParams();
   const [card, setCard] = useState({});
   const initialFormData = { front: card.front, back: card.back };
   const [formData, setFormData] = useState({ ...initialFormData });
-  const { cardId } = useParams();
-  const history = useHistory();
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -17,7 +17,7 @@ function EditCard({ deck }) {
       setCard({});
       const cardFromAPI = await readCard(cardId, signal);
       setCard(cardFromAPI);
-      setFormData({ front: card.front, back: card.back });
+      setFormData({ front: cardFromAPI.front, back: cardFromAPI.back });
     }
 
     loadCard();

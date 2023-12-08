@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { createCard } from "../../utils/api";
+import CardForm from "./CardForm";
 
 function AddCard({ deck }) {
   const history = useHistory();
@@ -37,49 +38,12 @@ function AddCard({ deck }) {
         </ol>
       </div>
 
-      <div className="row">
-        <div className="card" style={{ width: "90%" }}>
-          <div className="card-body">
-            <h2 className="card-title">{deck.name}: Add Card</h2>
-            <form onSubmit={handleSubmit}>
-              <label for="front" className="form-label">
-                Front
-              </label>
-              <textarea
-                type="textarea"
-                className="form-control mb-2"
-                id="front"
-                name="front"
-                placeholder="Front side of card"
-                onChange={handleChange}
-                value={formData.front}
-              ></textarea>
-              <label for="back" className="form-label">
-                Back
-              </label>
-              <textarea
-                type="textarea"
-                className="form-control mb-4"
-                id="back"
-                name="back"
-                placeholder="Back side of card"
-                onChange={handleChange}
-                value={formData.back}
-              ></textarea>
-              <button
-                type="button"
-                className="btn btn-secondary mr-3"
-                onClick={() => history.push(`/decks/${deck.id}`)}
-              >
-                Done
-              </button>
-              <button type="submit" className="btn btn-primary">
-                Save
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
+      <CardForm
+        formData={formData}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        deck={deck}
+      />
     </>
   );
 }

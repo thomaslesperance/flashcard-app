@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { readCard, updateCard } from "../../utils/api";
+import CardForm from "./CardForm";
 
 function EditCard({ deck }) {
   const history = useHistory();
@@ -60,47 +61,14 @@ function EditCard({ deck }) {
         </ol>
       </div>
 
-      <div className="row">
-        <div className="card" style={{ width: "90%" }}>
-          <div className="card-body">
-            <h2 className="card-title">Edit Card</h2>
-            <form onSubmit={handleSubmit}>
-              <label for="front" className="form-label">
-                Front
-              </label>
-              <textarea
-                type="textarea"
-                className="form-control mb-2"
-                id="front"
-                name="front"
-                onChange={handleChange}
-                value={formData.front}
-              ></textarea>
-              <label for="back" className="form-label">
-                Back
-              </label>
-              <textarea
-                type="textarea"
-                className="form-control mb-4"
-                id="back"
-                name="back"
-                onChange={handleChange}
-                value={formData.back}
-              ></textarea>
-              <button
-                type="button"
-                className="btn btn-secondary mr-3"
-                onClick={() => history.push(`/decks/${deck.id}`)}
-              >
-                Cancel
-              </button>
-              <button type="submit" className="btn btn-primary">
-                Submit
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
+      <CardForm
+        formData={formData}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        deck={deck}
+        edit={true}
+        card={card}
+      />
     </>
   );
 }

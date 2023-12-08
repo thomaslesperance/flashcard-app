@@ -34,28 +34,24 @@ function DeckList() {
     <DeckDisplay deck={deck} decks={decks} setDecks={setDecks} />
   ));
 
-  if (decks.length) {
-    return (
-      <>
-        <div className="row mb-2">
-          <button
-            type="button"
-            className="btn btn-secondary"
-            onClick={() => history.push("/decks/new")}
-          >
-            <i
-              className="bi bi-plus-square-dotted"
-              style={{ marginRight: "10px", fontSize: "1.2rem" }}
-            ></i>
-            Create Deck
-          </button>
-        </div>
-        <div className="row">{deckList}</div>
-      </>
-    );
-  }
-
-  return <p>Loading decks...</p>;
+  return (
+    <>
+      <div className="row mb-2">
+        <button
+          type="button"
+          className="btn btn-secondary"
+          onClick={() => history.push("/decks/new")}
+        >
+          <i
+            className="bi bi-plus-square-dotted"
+            style={{ marginRight: "10px", fontSize: "1.2rem" }}
+          ></i>
+          Create Deck
+        </button>
+      </div>
+      <div className="row">{deckList}</div>
+    </>
+  );
 }
 
 export default DeckList;

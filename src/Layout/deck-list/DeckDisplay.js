@@ -6,6 +6,7 @@ function DeckDisplay({ deck, decks, setDecks }) {
   const history = useHistory();
   const id = deck.id;
 
+  // If confirmed, requests delete from API. Upon positive resposne, makes matching change in loaded deck
   async function handleDeleteDeck() {
     const response = window.confirm(
       "Delete this deck?\n\nYou will not be able to recover it."

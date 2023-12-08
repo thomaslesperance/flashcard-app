@@ -11,18 +11,26 @@ function StudyCards({ deck, cards }) {
     else if (side === "back") setSide("front");
   }
 
+  // If on last card, asks to restart; either goes home or resets index and flips cardIndex state; otherwise increments index and flips side
   function nextHandler() {
     if (cardIndex + 1 === cards.length) {
       const response = window.confirm(
         "Restart cards?\n\nClick 'cancel' to return to home page"
       );
-      return response ? setCardIndex(0) : history.push("/");
+
+      if (response) {
+        flipHandler();
+        setCardIndex(0);
+      } else if (!response) {
+        history.push("/");
+      }
     } else {
       setCardIndex(cardIndex + 1);
       setSide("front");
     }
   }
 
+  // Prevents study feature if less than 3 cards
   if (cards.length < 3 || !cards.length) {
     return (
       <div className="card " style={{ width: "90%" }}>

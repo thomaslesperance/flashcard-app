@@ -10,6 +10,7 @@ function EditCard({ deck }) {
   const initialFormData = { front: card.front, back: card.back };
   const [formData, setFormData] = useState({ ...initialFormData });
 
+  // Calls API for card using params; sets initial formData state with properties from API response
   useEffect(() => {
     const abortController = new AbortController();
     const signal = abortController.signal;
@@ -26,6 +27,7 @@ function EditCard({ deck }) {
     return () => abortController.abort();
   }, [cardId]);
 
+  // Sync form input values with formData state
   function handleChange({ target }) {
     setFormData({
       ...formData,
@@ -33,6 +35,7 @@ function EditCard({ deck }) {
     });
   }
 
+  // Creates updates object from formData state, calls API, checks format of response. On positive response, resets state and goes to deck home page
   async function handleSubmit(event) {
     event.preventDefault();
     const updatedCard = {
@@ -47,6 +50,7 @@ function EditCard({ deck }) {
     }
   }
 
+  // Shares one form component for add and edit card features
   return (
     <>
       <div className="row mb-4">

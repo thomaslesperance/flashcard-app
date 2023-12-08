@@ -7,6 +7,7 @@ function EditDeck({ deck }) {
   const initialFormData = { name: deck.name, description: deck.description };
   const [formData, setFormData] = useState({ ...initialFormData });
 
+  // Sync form input values and formData state
   function handleChange({ target }) {
     setFormData({
       ...formData,
@@ -14,6 +15,7 @@ function EditDeck({ deck }) {
     });
   }
 
+  // Call API with updated deck; if response if positive, reset formData state
   async function handleSubmit(event) {
     event.preventDefault();
     const updatedDeck = { id: deck.id, ...formData };

@@ -11,6 +11,7 @@ function CreateDeck() {
   const [formData, setFormData] = useState({ ...initialFormData });
   const history = useHistory();
 
+  // Sync form input values with formData state
   function handleChange({ target }) {
     setFormData({
       ...formData,
@@ -18,6 +19,7 @@ function CreateDeck() {
     });
   }
 
+  // Call API on submit with formData, check format of response, go to new deck page with new deckId
   async function submitHandler(event) {
     event.preventDefault();
     const response = await createDeck(formData);

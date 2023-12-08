@@ -8,6 +8,7 @@ function DeckList() {
   const [decks, setDecks] = useState([]);
   const history = useHistory();
 
+  // Calls API once for complete list of decks
   useEffect(() => {
     const abortController = new AbortController();
     const signal = abortController.signal;

@@ -59,9 +59,10 @@ function Deck() {
     }
   }
 
-  //
-  //
-  //
+  // "Deck" is starting point for specific deck- possible render routes using state from this module:
+  // Landing page; includes all options
+  // Study feature
+  // Edit deck information form
 
   if (deck.id) {
     return (

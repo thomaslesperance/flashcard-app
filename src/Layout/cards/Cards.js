@@ -9,6 +9,7 @@ function Cards() {
   const { path } = useRouteMatch();
   const { deckId } = useParams();
 
+  // Calls API for deck using the URL params and sets to state declared above
   useEffect(() => {
     const abortController = new AbortController();
     const signal = abortController.signal;
@@ -24,6 +25,7 @@ function Cards() {
     return () => abortController.abort();
   }, [deckId]);
 
+  // Using same state above, provides routes for edit and add card features that use the same form component
   return (
     <Switch>
       <Route path={`${path}/:cardId/edit`}>

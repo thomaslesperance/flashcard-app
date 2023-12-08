@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { createCard } from "../../utils/api";
 import CardForm from "./CardForm";
 
 function AddCard({ deck }) {
-  const history = useHistory();
   const initialFormData = { front: "", back: "" };
   const [formData, setFormData] = useState(initialFormData);
 
+  // Sync form input value with formData state
   function handleChange({ target }) {
     setFormData({
       ...formData,
@@ -15,6 +15,7 @@ function AddCard({ deck }) {
     });
   }
 
+  // Calls API, checks format of response. On positive response, resets formData state
   async function handleSubmit(event) {
     event.preventDefault();
 

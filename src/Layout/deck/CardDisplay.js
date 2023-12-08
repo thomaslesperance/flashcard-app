@@ -6,6 +6,7 @@ function CardDisplay({ card, deck, setDeck }) {
   const history = useHistory();
   const { url } = useRouteMatch();
 
+  // If confirmed, calls API for delete, checks response format. On positive response, filters cards property of state and updates state
   async function handleDeleteCard() {
     const response = window.confirm(
       "Delete this card?\n\nYou will not be able to recover it."

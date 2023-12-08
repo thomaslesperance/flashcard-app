@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
+// edit and card props used for the edit card feature; not used for add card feature; add uses placeholder text, edit gives editable current data for card
 function CardForm({
   formData,
   handleChange,
